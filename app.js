@@ -1,30 +1,32 @@
 'use strict';
 
 angular.module('calculator',[])
-	.controller('CalcCtrl', function($scope){	
-		$scope.subtotal = [];
-		$scope.calculate = function(){
-			$scope.tax /= 100;
-			$scope.sub = parseFloat($scope.base) + parseFloat($scope.tax);
-			$scope.percentage /=100;
-			$scope.tip = parseFloat($scope.percentage) * parseFloat($scope.sub);
-			$scope.total = parseFloat($scope.sub) + parseFloat($scope.tip);
-			
-			
-			var num;
-			for (var i=0 ; i < $scope.subtotal.length; i++){
-				num = parseFloat($scope.subtotal[i]);
-					if(!isNan(num)) 
-						$scope.subtotal.push(parseFloat($scope.sub+=num));
-				}
-			};
+	.controller('CalcCtrl', function($scope){
 
-		$scope.cancel = function(){
-			$scope.base = '';
-			$scope.tax = '';
-			$scope.percentage = '';
-
+	$scope.submit = function(){
+		
+		$scope.tipPercent = function(){
+			return $scope.tip/100;
 		};
 
+		$scope.taxRatePercent = function(){
+			return $scope.tax/100;
+		};
 
-	});
+		$scope.totalTax = function(){
+			return $scope.base * $scope.taxRatePercent;
+		};
+
+		$scope.totalTip = function(){
+			return $scope.base * $scope.tipPercent;
+		};
+
+		$scope.subtotal = function(){
+			return $scope.base + $scope.totalTax;
+		};
+
+		$scope.total = function(){
+			return $scope.subtotal + $scope.totalTip;
+		};
+	};
+});

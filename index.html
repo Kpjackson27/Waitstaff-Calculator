@@ -42,22 +42,21 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-6">
-                                    <button type="submit" class="btn btn-default">Submit</button>
+                                    <button ng-click="submit()" class="btn btn-default">Submit</button>
                                     <button ng-click="cancel()" class="btn btn-default">Cancel</button>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
              <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h4>Customer Charges</h4></div>
                     <div class="panel-body">
-                        <h3>Subtotal: <strong>{{sub | currency}}</strong></h3>
-                        <h3>Tip: <strong>{{tip | currency}}</strong></h3>
+                        <h3>Subtotal: <strong>{{subtotal() | currency}}</strong></h3>
+                        <h3>Tip: <strong>{{totalTip() | currency}}</strong></h3>
                         <hr>
-                        <h3>Total: <strong>{{total | currency}}</strong><h3>
+                        <h3>Total: <strong>{{total() | currency}}</strong><h3>
                     </div>
                 </div>
             </div>
@@ -65,12 +64,13 @@
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h4>My Earnings Info</h4></div>
                     <div class="panel-body">
-                        <h3>Tip Total:</h3>
+                        <h3>Tip Total: {{tipTotal | currency }}</h3>
                         <h3>Meal count:</h3>
                         <h3>Average Tip Per Meal:</h3>
                     </div>
                 </div>
             </div>
+         </form>
             <form>
                 <div class="form-group">
                     <div class="col-sm-12 text-right">
